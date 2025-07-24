@@ -1,375 +1,397 @@
-# 🚀 Comprehensive System Setup Script
+# 🚀 Comprehensive System Setup Script v2.0
 
-Ein umfassendes und benutzerfreundliches Setup-Script für die schnelle Einrichtung einer Entwicklungsumgebung auf Linux-Systemen.
+Ein **vollständig überarbeitetes**, benutzerfreundliches und stabiles Setup-Script für die schnelle Einrichtung einer professionellen Entwicklungsumgebung auf Linux-Systemen.
 
 ## ✨ Features
 
-### 🔧 Basis-Installation
-- **System Updates**: Automatische Updates des Systems
-- **Basis-Pakete**: `sudo`, `curl`, `git`, `unzip`, `nodejs`, `npm`, `jq`
-- **System-Konfiguration**: Timezone und Locales
-- **Benutzerverwaltung**: Neuen Benutzer erstellen mit sudo und Docker-Rechten
-- **Cleanup**: Automatische Bereinigung nach Installation
+### 🎯 **Kernfunktionen**
+- **📁 Git-basierter Workflow**: Clont sich selbst lokal, arbeitet vom Repository aus
+- **🔧 Komponentenbasierte Installation**: Wähle nur was du brauchst
+- **👤 Erweiterte Benutzerverwaltung**: Sichere Benutzer-Erstellung mit sudo/docker-Rechten
+- **🛡️ Stabile System-Konfiguration**: Keine dpkg-reconfigure Probleme mehr
+- **🎨 Intuitive Benutzerführung**: Farbige Menüs, Progress-Bars, klare Strukturen
 
-### 👤 Benutzerverwaltung
-- **Neuer Benutzer**: Interaktive Erstellung mit sicherem Passwort
-- **Sudo-Rechte**: Automatisch zur sudo/wheel-Gruppe hinzugefügt
-- **Passwordless Sudo**: Optional aktivierbar
-- **Docker-Integration**: Automatisch zur Docker-Gruppe hinzugefügt
-- **Shell-Konfiguration**: Vorkonfigurierte Aliases und Umgebungsvariablen
-- **Docker Engine**: Neueste stabile Version
-- **Docker Compose**: Standalone Version + Plugin
-- **docker-compose Wrapper**: Kompatibilität mit beiden Versionen
-- **Benutzer-Konfiguration**: Automatisches Hinzufügen zur Docker-Gruppe
+### 🔧 **System-Unterstützung**
+- **Distributionen**: Ubuntu, Debian, CentOS, Fedora, Arch Linux, OpenSUSE
+- **Package Manager**: apt, dnf/yum, pacman, zypper
+- **Architekturen**: x86_64, aarch64 (ARM64)
 
-### 🤖 AI-Tools
-- **Claude Code**: Offizielle Claude CLI
-- **Optional**: claude-flow (AI Workflow Automation)
-- **Optional**: Claude-Autopilot (Automatisierte Claude-Interaktionen)
+### 📦 **Installierbare Komponenten**
 
-### 🛡️ Sicherheit & Stabilität
-- **Error Handling**: Robuste Fehlerbehandlung
-- **Logging**: Detaillierte Logs für Debugging
-- **Interaktive Bestätigungen**: Benutzergesteuerte Installation
-- **Distribution Detection**: Unterstützung für Ubuntu, Debian, CentOS, Fedora, Arch
+#### **1. Base System Packages**
+```
+git, nodejs, npm, python3, jq, tree, htop, vim, nano
+build-essential, curl, wget, unzip, openssh-client
+```
+
+#### **2. Docker & Container Tools**
+```
+Docker Engine, Docker Compose Plugin
+Docker Compose Standalone (Fallback)
+Automatische Benutzer-Gruppenzugehörigkeit
+Service-Konfiguration und Auto-Start
+```
+
+#### **3. Claude Code CLI**
+```
+Offizielle Claude AI CLI
+PATH-Integration
+Authentifizierungs-Unterstützung
+```
+
+#### **4. Development Tools**
+```
+neofetch, tmux, screen, rsync
+bat, fd-find, ripgrep (falls verfügbar)
+Enhanced shell configuration
+```
+
+#### **5. System Configuration**
+```
+Timezone: Interaktive Auswahl (timedatectl basiert)
+Locales: Sichere locale-gen Konfiguration
+Keine problematischen dpkg-reconfigure Aufrufe
+```
+
+#### **6. AI Tools (GitHub-basiert)**
+```
+claude-flow: AI Workflow Automation
+Claude-Autopilot: Automatisierte Claude-Interaktionen
+Automatische Dependency-Installation
+```
 
 ## 🚀 Installation
 
-### Direkte Online-Ausführung (Empfohlen)
+### **Methode 1: Direkte Online-Ausführung (Empfohlen)**
 
 ```bash
+# Vollständige Installation mit Repository-Clone
 curl -fsSL https://raw.githubusercontent.com/sakis-tech/setup-scripts/main/setup.sh | bash
 ```
 
-### Alternative: SSH-Ausführung
+### **Methode 2: Git Clone (für Entwickler)**
+
+```bash
+# Repository clonen
+git clone https://github.com/sakis-tech/setup-scripts.git
+cd setup-scripts
+
+# Script ausführen
+./setup.sh
+```
+
+### **Methode 3: SSH/Remote-Installation**
 
 ```bash
 # Für Remote-Server
 ssh user@server "curl -fsSL https://raw.githubusercontent.com/sakis-tech/setup-scripts/main/setup.sh | bash"
 ```
 
-### Mit wget (falls curl nicht verfügbar)
+## 🎛️ **Interaktive Bedienung**
 
-```bash
-wget -qO- https://raw.githubusercontent.com/sakis-tech/setup-scripts/main/setup.sh | bash
+### **Schritt 1: System-Erkennung**
+```
+🚀 SAKIS-TECH COMPREHENSIVE SYSTEM SETUP v2.0 🚀
+
+[STEP] Detecting system configuration...
+[SUCCESS] Detected: Ubuntu 22.04.3 LTS with apt
+[STEP] Checking system prerequisites...
+[SUCCESS] All prerequisites satisfied
 ```
 
-### Lokale Ausführung
+### **Schritt 2: Repository Setup**
+```
+▓▓▓ Repository Setup ▓▓▓
 
-```bash
-# Script herunterladen
-curl -fsSL https://raw.githubusercontent.com/sakis-tech/setup-scripts/main/setup.sh -o setup.sh
-
-# Ausführbar machen
-chmod +x setup.sh
-
-# Ausführen
-./setup.sh
+[STEP] Cloning repository to /home/user/sakis-tech-setup...
+[SUCCESS] Repository cloned successfully
 ```
 
-## 📋 Systemanforderungen
+### **Schritt 3: Benutzerverwaltung**
+```
+▓▓▓ User Management ▓▓▓
 
-### Mindestanforderungen
-- **Betriebssystem**: Linux (Ubuntu, Debian, CentOS, Fedora, Arch)
-- **Berechtigung**: sudo-Zugriff oder root
-- **Internet**: Aktive Internetverbindung
-- **Speicher**: Mindestens 2GB freier Speicherplatz
-
-### Getestete Distributionen
-- ✅ Ubuntu 20.04, 22.04, 24.04
-- ✅ Debian 11, 12
-- ✅ CentOS 7, 8, 9
-- ✅ Fedora 38, 39, 40
-- ✅ Arch Linux (aktuell)
-
-## 🎛️ Interaktive Features
-
-Das Script bietet folgende interaktive Optionen:
-
-1. **Benutzerverwaltung**: 
-   - Neuen Benutzer erstellen
-   - Benutzer zur sudo-Gruppe hinzufügen
-   - Passwordless sudo konfigurieren (optional)
-   - Automatisch zur Docker-Gruppe hinzufügen
-2. **Timezone-Konfiguration**: Auswahl der gewünschten Zeitzone
-3. **Locale-Einstellungen**: Konfiguration der Systemsprache
-4. **Optionale Projekte**: 
-   - claude-flow Installation (ja/nein)
-   - Claude-Autopilot Installation (ja/nein)
-
-### 👤 Benutzerverwaltung im Detail
-
-Das Script bietet eine umfassende Benutzerverwaltung:
-
-- **Sichere Benutzererstellung**: Validierung von Benutzername und Passwort
-- **Berechtigungen**: Automatisches Hinzufügen zu sudo/wheel und docker Gruppen
-- **Passwordless Sudo**: Optional aktivierbar für Entwicklungsumgebungen
-- **Shell-Konfiguration**: 
-  - Vorkonfigurierte `.bashrc` mit nützlichen Aliases
-  - Docker, Git und System-Shortcuts
-  - PATH-Konfiguration für lokale Binaries
-  - Claude Code Integrationen
-
-**Verfügbare Aliases für neue Benutzer:**
-```bash
-# System
-ll, la, l          # Erweiterte ls-Kommandos
-update, install    # APT-Shortcuts
-c, h              # Clear, History
-
-# Docker
-dps, dpa, di      # docker ps, ps -a, images
-dc, dcu, dcd      # docker-compose up/down
-dcl               # docker-compose logs -f
-
-# Git
-gs, ga, gc        # git status, add, commit
-gp, gl, gb        # git push, pull, branch
-gco               # git checkout
-
-# Claude Code
-cc, claude        # claude-code shortcuts
+Create a new user account? [y/N]
+This will add a new system user with sudo privileges
 ```
 
-## 📊 Installationsübersicht
+### **Schritt 4: Komponenten-Auswahl**
+```
+▓▓▓ Component Selection ▓▓▓
 
-Nach der Installation erhalten Sie eine detaillierte Übersicht:
+Select components to install (multiple selections possible):
+
+Install: Base System Packages (git, nodejs, npm, jq, etc.) - RECOMMENDED [Y/n]: y
+Install: Docker & Docker Compose - Container platform [Y/n]: y
+Install: Claude Code CLI - AI development assistant [Y/n]: y
+Install: Development Tools (vim, htop, tree, etc.) [Y/n]: n
+Install: System Configuration (timezone, locales) [Y/n]: y
+Install: AI Tools (claude-flow, Claude-Autopilot) [Y/n]: n
+```
+
+### **Schritt 5: Installation**
+```
+▓▓▓ Installing Selected Components ▓▓▓
+
+Progress: 1/4
+━━━ Installing Base System Packages ━━━
+[STEP] Updating package lists...
+Updating repositories [▓▓▓▓▓▓▓▓▓▓░░░░░░░] 67% ✓
+```
+
+## 📊 **Installation Summary**
+
+Nach erfolgreicher Installation erhältst du eine detaillierte Übersicht:
 
 ```
-=== INSTALLATION SUMMARY ===
+▓▓▓ Installation Summary ▓▓▓
 
-System Information:
+━━━ System Information ━━━
 OS: Ubuntu 22.04.3 LTS
 Architecture: x86_64
-Current User: root
-Home Directory: /root
+Package Manager: apt
+Current User: sakis
+Install Directory: /home/sakis/sakis-tech-setup
 
-New User Created:
+━━━ New User Created ━━━
 Username: developer
-Home Directory: /home/developer
-Shell: /bin/bash
+Home: /home/developer
+Groups: developer sudo docker
 
-Group Memberships:
-  ✓ developer
-  ✓ docker
-  ✓ sudo
-
-Sudo Configuration:
-  ✓ Passwordless sudo enabled
-
-Installed Software:
+━━━ Installed Software ━━━
 ✓ Git: 2.34.1
 ✓ Node.js: v18.17.0
 ✓ NPM: 9.6.7
 ✓ Docker: 24.0.6
 ✓ Docker Compose: 2.21.0
 ✓ Claude Code: installed
-✓ jq: 1.6
+✓ Python: 3.10.12
 
-Optional Projects:
-✓ claude-flow: /home/developer/claude-flow
-✓ Claude-Autopilot: /home/developer/Claude-Autopilot
+✓ Installation completed successfully!
+Log file: /home/sakis/.local/share/sakis-tech-setup/logs/setup-20250724-195030.log
 ```
 
-## 🔧 Verwendung nach Installation
+## 🔧 **Post-Installation**
 
-### Benutzerwechsel
+### **Wichtige nächste Schritte:**
+```
+▓▓▓ Post-Installation Notes ▓▓▓
 
-Wenn ein neuer Benutzer erstellt wurde:
+Important Next Steps:
 
-```bash
-# Zu neuem Benutzer wechseln
-su - developer
-
-# Oder via SSH (falls Remote)
-ssh developer@server
-
-# Benutzer-Informationen anzeigen
-id
-groups
-sudo -l  # Sudo-Berechtigungen prüfen
+1. Restart Session: Log out and back in to apply group changes
+2. Reload Shell: Run 'source ~/.bashrc' or open a new terminal  
+3. Docker Test: Run 'docker run hello-world' to test Docker
+4. Claude Code: Run 'claude-code auth' to authenticate
 ```
 
-### Docker
+### **Neue Benutzer-Features:**
 ```bash
-# Docker-Version prüfen
-docker --version
+# Enhanced shell mit custom aliases
+ll, la          # Erweiterte ls-Kommandos
+dps, dpsa, di   # Docker shortcuts  
+gs, ga, gc, gp  # Git shortcuts
+update, install # System shortcuts
 
-# Docker Compose testen
-docker-compose --version
-# oder
-docker compose --version
-
-# Erstes Container-Test
-docker run hello-world
+# Nützliche Funktionen
+mkcd dirname    # Verzeichnis erstellen und wechseln
+extract file    # Automatisches Entpacken aller Archive-Typen
+myip           # Externe IP-Adresse anzeigen
 ```
 
-### Claude Code
+## 🛠️ **Erweiterte Verwendung**
+
+### **Repository-Management**
 ```bash
-# Authentifizierung (erforderlich beim ersten Mal)
-claude-code auth
+# Ins Repository-Verzeichnis wechseln
+cd ~/sakis-tech-setup
 
-# Hilfe anzeigen
-claude-code --help
+# Updates vom GitHub holen
+git pull
 
-# Beispiel-Nutzung
-claude-code "Create a Python script for file organization"
+# Script erneut ausführen
+./setup.sh
+
+# Komponenten nachinstallieren
+./setup.sh  # Erkennt bereits installierte Komponenten
 ```
 
-### Optionale Projekte
+### **System-Konfiguration**
 
-#### claude-flow
+#### **Timezone-Konfiguration (verbessert)**
 ```bash
-cd ~/claude-flow
-# Weitere Anweisungen in der Projekt-README
+# Interaktive Auswahl statt dpkg-reconfigure
+Available timezones:
+1. Europe/Berlin
+2. Europe/London
+3. America/New_York
+4. America/Los_Angeles
+5. Asia/Tokyo
+6. Asia/Shanghai
+7. Australia/Sydney
+8. Custom timezone
+
+Select timezone [1-8]: 1
+[SUCCESS] Timezone set to Europe/Berlin
 ```
 
-#### Claude-Autopilot
+#### **Locale-Konfiguration (stabil)**
 ```bash
-cd ~/Claude-Autopilot
-# Konfiguration und Nutzung siehe Projekt-Dokumentation
+# Sichere locale-gen statt dpkg-reconfigure
+Common locales:
+1. en_US.UTF-8 (English US)
+2. en_GB.UTF-8 (English UK)  
+3. de_DE.UTF-8 (German)
+4. fr_FR.UTF-8 (French)
+5. es_ES.UTF-8 (Spanish)
+6. Custom locale
+
+Select locale [1-6]: 3
+[SUCCESS] Locale set to de_DE.UTF-8
 ```
 
-## 📝 Logs und Debugging
+## 📁 **Verzeichnisstruktur**
 
-Das Script erstellt automatisch detaillierte Logs:
+Nach der Installation:
+```
+~/sakis-tech-setup/          # Haupt-Repository
+├── setup.sh                 # Haupt-Script
+├── README.md                # Diese Dokumentation
+└── .git/                    # Git-Repository
 
-```bash
-# Log-Datei finden (wird am Ende der Installation angezeigt)
-ls -la /tmp/setup-script-*.log
+~/.local/share/sakis-tech-setup/logs/  # Log-Dateien
+~/.config/sakis-tech-setup/           # Konfiguration
 
-# Log-Inhalt anzeigen
-tail -f /tmp/setup-script-YYYYMMDD-HHMMSS.log
+~/ai-tools/                   # AI Tools (optional)
+├── claude-flow/             # claude-flow Repository
+└── Claude-Autopilot/        # Claude-Autopilot Repository
 ```
 
-## 🛠️ Erweiterte Optionen
+## 🐛 **Fehlerbehebung**
 
-### Umgebungsvariablen
+### **Häufige Probleme**
 
-Einige Aspekte können durch Umgebungsvariablen gesteuert werden:
-
+#### **Repository-Clone Fehler**
 ```bash
-# Automatische Bestätigung für alle Fragen
-export AUTO_CONFIRM=yes
-
-# Benutzerdefinierte Installation ohne optionale Projekte
-export SKIP_OPTIONAL=yes
-
-# Script ausführen
-curl -fsSL https://raw.githubusercontent.com/sakis-tech/setup-scripts/main/setup.sh | bash
+# Manueller Clone falls automatisch fehlschlägt
+git clone https://github.com/sakis-tech/setup-scripts.git ~/sakis-tech-setup
+cd ~/sakis-tech-setup
+./setup.sh
 ```
 
-### Nur bestimmte Komponenten installieren
-
+#### **Docker-Permissions**
 ```bash
-# Nur Docker installieren (kommende Version)
-curl -fsSL https://raw.githubusercontent.com/sakis-tech/setup-scripts/main/setup.sh | bash -s -- --only-docker
-
-# Nur Claude Code installieren (kommende Version)
-curl -fsSL https://raw.githubusercontent.com/sakis-tech/setup-scripts/main/setup.sh | bash -s -- --only-claude
-```
-
-## ❗ Wichtige Hinweise
-
-### Nach der Installation
-1. **Neuanmeldung erforderlich**: Für Docker-Gruppenmitgliedschaft
-2. **Terminal neustarten**: Für PATH-Updates
-3. **Claude Code authentifizieren**: `claude-code auth`
-
-### Berechtigungen
-- Das Script benötigt sudo-Rechte für Systeminstallationen
-- Benutzer wird automatisch zur Docker-Gruppe hinzugefügt
-- Keine root-Ausführung erforderlich (aber möglich)
-
-### Sicherheit
-- Script ist idempotent (mehrfache Ausführung sicher)
-- Überprüfung vorhandener Installationen
-- Automatische Backup-Erstellung bei Konfigurationsänderungen
-- **Passwordless sudo**: Optional und nur auf Wunsch aktiviert
-- **Sichere Passwort-Eingabe**: Versteckte Eingabe mit Bestätigung
-- **Benutzervalidierung**: Prüfung auf gültige Benutzernamen
-
-## 🐛 Fehlerbehebung
-
-### Häufige Probleme
-
-#### Docker-Berechtigung
-```bash
-# Problem: "permission denied while trying to connect to Docker daemon"
-# Lösung: Neuanmeldung oder temporäre Gruppenwechsel
-newgrp docker
-```
-
-#### Claude Code Authentifizierung
-```bash
-# Problem: "Authentication required"
-# Lösung: 
-claude-code auth
-# Folgen Sie den Anweisungen im Browser
-```
-
-#### Benutzer-Probleme
-```bash
-# Problem: "User not in sudoers file"
-# Lösung: Benutzer zur sudo-Gruppe hinzufügen
-sudo usermod -aG sudo username
-
-# Problem: "Permission denied" bei Docker
-# Lösung: Benutzer zur Docker-Gruppe hinzufügen
-sudo usermod -aG docker username
+# Nach Docker-Installation
+sudo usermod -aG docker $USER
 newgrp docker  # Oder neu anmelden
-
-# Problem: Passwordless sudo funktioniert nicht
-# Lösung: Sudoers-Datei prüfen
-sudo visudo -f /etc/sudoers.d/90-username-nopasswd
+docker run hello-world  # Test
 ```
 
-#### Netzwerk-Probleme
+#### **Timezone/Locale Probleme**
 ```bash
-# Problem: Download-Fehler
-# Lösung: DNS und Proxy prüfen
-nslookup github.com
-curl -I https://github.com
+# Manuelle Timezone-Konfiguration
+sudo timedatectl set-timezone Europe/Berlin
+
+# Manuelle Locale-Konfiguration  
+sudo locale-gen de_DE.UTF-8
+sudo update-locale LANG=de_DE.UTF-8
 ```
 
-### Support
+#### **Claude Code Authentifizierung**
+```bash
+# Nach Installation authentifizieren
+claude-code auth
+# Folge den Browser-Anweisungen
+```
 
-Bei Problemen:
+## 📋 **Systemanforderungen**
 
-1. **Log-Datei prüfen**: Detaillierte Fehlermeldungen in `/tmp/setup-script-*.log`
-2. **Issue erstellen**: [GitHub Issues](https://github.com/sakis-tech/setup-scripts/issues)
-3. **Pull Request**: Verbesserungen sind willkommen!
+### **Mindestanforderungen**
+- **OS**: Linux (Ubuntu 18.04+, Debian 10+, CentOS 7+, Fedora 30+, Arch Linux)
+- **RAM**: 2GB (4GB empfohlen für Docker)
+- **Disk**: 5GB freier Speicherplatz
+- **Network**: Internetverbindung für Downloads
+- **User**: sudo-Rechte oder root-Zugang
 
-## 🤝 Mitwirken
+### **Getestete Systeme**
+- ✅ Ubuntu 20.04, 22.04, 24.04
+- ✅ Debian 11, 12
+- ✅ CentOS 7, 8, 9 / Rocky Linux / AlmaLinux
+- ✅ Fedora 38, 39, 40
+- ✅ Arch Linux (aktuell)
+- ✅ openSUSE Leap / Tumbleweed
 
-Beiträge sind herzlich willkommen! Bitte:
+## 🤝 **Mitwirken**
 
-1. Fork des Repositories
-2. Feature-Branch erstellen (`git checkout -b feature/amazing-feature`)
-3. Änderungen committen (`git commit -m 'Add amazing feature'`)
-4. Branch pushen (`git push origin feature/amazing-feature`)
-5. Pull Request erstellen
+### **Entwicklung**
+```bash
+# Repository forken und clonen
+git clone https://github.com/dein-username/setup-scripts.git
+cd setup-scripts
 
-## 📄 Lizenz
+# Branch für Feature erstellen
+git checkout -b feature/amazing-feature
 
-Dieses Projekt steht unter der MIT-Lizenz - siehe [LICENSE.md](LICENSE.md) für Details.
+# Änderungen committen
+git commit -m 'Add amazing feature'
 
-## 🙏 Danksagungen
+# Push und Pull Request erstellen
+git push origin feature/amazing-feature
+```
+
+### **Bug Reports**
+- 🐛 [GitHub Issues](https://github.com/sakis-tech/setup-scripts/issues)
+- 📧 **Log-Dateien** immer mit anhängen: `~/.local/share/sakis-tech-setup/logs/`
+
+## 📄 **Changelog**
+
+### **v2.0.0 - Major Overhaul**
+- ✨ Git-basierter Workflow statt One-Liner
+- 🔧 Stabile Timezone/Locale-Konfiguration
+- 🎨 Komplett neue, intuitive Benutzeroberfläche
+- 🛡️ Robuste Fehlerbehandlung und Validierung
+- 📦 Komponentenbasierte Auswahl-System
+- 👤 Erweiterte Benutzerverwaltung mit Enhanced Shell
+- 🐳 Verbesserte Docker-Installation mit Fallbacks
+- 📊 Detaillierte Progress-Anzeigen und Logging
+
+### **v1.0.0 - Initial Release**
+- 🚀 Basis-Funktionalität
+- 🐳 Docker Installation
+- 🤖 Claude Code Integration
+
+## 📊 **Statistiken**
+
+![GitHub Release](https://img.shields.io/github/v/release/sakis-tech/setup-scripts)
+![GitHub Issues](https://img.shields.io/github/issues/sakis-tech/setup-scripts)
+![GitHub Stars](https://img.shields.io/github/stars/sakis-tech/setup-scripts)
+![GitHub Forks](https://img.shields.io/github/forks/sakis-tech/setup-scripts)
+
+## 📄 **Lizenz**
+
+Dieses Projekt steht unter der MIT-Lizenz - siehe [LICENSE](LICENSE) für Details.
+
+## 🙏 **Danksagungen**
 
 - [Docker](https://docker.com) für die Container-Technologie
 - [Anthropic](https://anthropic.com) für Claude und Claude Code
 - [ruvnet](https://github.com/ruvnet) für claude-flow
 - [benbasha](https://github.com/benbasha) für Claude-Autopilot
-
-## 📈 Statistiken
-
-![Script Usage](https://img.shields.io/github/downloads/sakis-tech/setup-scripts/total)
-![Latest Release](https://img.shields.io/github/v/release/sakis-tech/setup-scripts)
-![Issues](https://img.shields.io/github/issues/sakis-tech/setup-scripts)
-![License](https://img.shields.io/github/license/sakis-tech/setup-scripts)
+- Die Open-Source Community für die großartigen Tools
 
 ---
 
 **Made with ❤️ by [sakis-tech](https://github.com/sakis-tech)**
 
-*Automatisiere deine Entwicklungsumgebung und spare wertvolle Zeit!*
+*Automatisiere deine Entwicklungsumgebung mit Stil und Stabilität! 🚀*
+
+## 🎯 **Quick Start Guide**
+
+```bash
+# 1. Eine Zeile - alles installieren
+curl -fsSL https://raw.githubusercontent.com/sakis-tech/setup-scripts/main/setup.sh | bash
+
+# 2. Den Anweisungen folgen
+# 3. Neu anmelden
+# 4. Entwickeln! 🚀
+```
